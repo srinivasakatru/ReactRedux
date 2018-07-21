@@ -3,7 +3,7 @@ import Photo from "./Photo";
 class PhotoViewer extends Component{
     render(){
         return (
-            <div>
+            <div className='photoViewer'>
                 {this.props.posts.map(post=><Photo post={post}/>)}
             </div>
         )
