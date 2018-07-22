@@ -1,7 +1,8 @@
 import React,{Component} from 'react';
 import Photo from "./Photo";
 import AddPhoto from './AddPhoto';
-
+import {Link} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 class PhotoViewer extends Component{
     constructor(){
         super()
@@ -30,6 +31,7 @@ class PhotoViewer extends Component{
         this.state.posts.push(item)
         this.state.screen = 'photos'
         this.removePhoto = this.removePhoto.bind(this)
+        this.navigate = this.navigate.bind(this)
     }
     removePhoto(removedPost){
         console.log("Inside removePhoto");
@@ -41,13 +43,19 @@ class PhotoViewer extends Component{
     componentDidUpdate(){
         console.log("componentDidUpdate");
     }
+    navigate(){
+        this.setState((state)=>({
+            screen:'addPhoto'
+        }))
+    }
     render(){
         return (
                 <div>
                 {
                     this.state.screen === 'photos' && 
                         <div>
-                            <button className='addIcon'>+</button>
+                            <Link className='addIcon' onClick={this.navigate} to='#AddPhoto'>+</Link>
+                            
                             <div className='photoViewer'>
                                 {this.state.posts.map(post=><Photo post={post} onRemovePhoto={this.removePhoto}/>)}
                             </div>

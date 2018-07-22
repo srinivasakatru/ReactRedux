@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Title from "./Components/Title";
 import  "./styles/style.css";
 import PhotoViewer from './Components/PhotoViewer';
-
+import {BrowserRouter} from 'react-router-dom';
 // const element = React.createElement('ol',"Hello world",orderedElements.map((elements,index)=>
 // {   
 //    return React.createElement('li',{key:index},elements)
@@ -24,8 +24,8 @@ import PhotoViewer from './Components/PhotoViewer';
 
 ReactDOM.render(
     <div>
-        <Title title="Photo Viewer"/>
-        <PhotoViewer/>
+        <BrowserRouter><Title title="Photo Viewer"/></BrowserRouter>
+        <BrowserRouter><PhotoViewer/></BrowserRouter>
     </div> 
     ,document.getElementById('root')
 );
