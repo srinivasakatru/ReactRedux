@@ -1,5 +1,7 @@
 import React,{Component} from 'react';
 import Photo from "./Photo";
+import AddPhoto from './AddPhoto';
+
 class PhotoViewer extends Component{
     constructor(){
         super()
@@ -26,13 +28,43 @@ class PhotoViewer extends Component{
         "3919321_1443393332_n.jpg"
         }
         this.state.posts.push(item)
+        this.state.screen = 'photos'
+        this.removePhoto = this.removePhoto.bind(this)
+    }
+    removePhoto(removedPost){
+        console.log("Inside removePhoto");
+        this.setState((state)=>({
+            posts: state.posts.filter(post => post.id !== removedPost.id)
+        }))
+        console.log(this.state.posts)
+    }
+    componentDidUpdate(){
+        console.log("componentDidUpdate");
     }
     render(){
         return (
-            <div className='photoViewer'>
-                {this.state.posts.map(post=><Photo post={post}/>)}
-            </div>
+                <div>
+                {
+                    this.state.screen === 'photos' && 
+                        <div>
+                            <button className='addIcon'>+</button>
+                            <div className='photoViewer'>
+                                {this.state.posts.map(post=><Photo post={post} onRemovePhoto={this.removePhoto}/>)}
+                            </div>
+                        </div>
+                    
+                }
+                {
+                    this.state.screen === 'addPhoto' && 
+                        <div>
+                            <AddPhoto/>
+                        </div>
+                    
+                    
+                }
+                </div>
         )
+        
     }
 }
 

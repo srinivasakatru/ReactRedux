@@ -41,3 +41,11 @@ h1 {
     border:2px solid #2f2f2f;
     padding:5px;
 }
+.addIcon{
+    margin:20px auto;
+    display: table;
+    padding:40px;
+    background:url("https://image.flaticon.com/icons/svg/60/60740.svg") center no-repeat;
+    background-size: contain;
+    border:none;
+}
