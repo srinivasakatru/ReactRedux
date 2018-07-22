@@ -29,9 +29,7 @@ class PhotoViewer extends Component{
         "3919321_1443393332_n.jpg"
         }
         this.state.posts.push(item)
-        this.state.screen = 'photos'
         this.removePhoto = this.removePhoto.bind(this)
-        this.navigate = this.navigate.bind(this)
     }
     removePhoto(removedPost){
         console.log("Inside removePhoto");
@@ -43,33 +41,20 @@ class PhotoViewer extends Component{
     componentDidUpdate(){
         console.log("componentDidUpdate");
     }
-    navigate(){
-        this.setState((state)=>({
-            screen:'addPhoto'
-        }))
-    }
     render(){
         return (
                 <div>
-                {
-                    this.state.screen === 'photos' && 
-                        <div>
-                            <Link className='addIcon' onClick={this.navigate} to='#AddPhoto'>+</Link>
-                            
-                            <div className='photoViewer'>
-                                {this.state.posts.map(post=><Photo post={post} onRemovePhoto={this.removePhoto}/>)}
+                    <Route exact path = '/' render={()=>
+                            <div>
+                                <Link className='addIcon' to="/addPhoto">+</Link>
+                                <div className='photoViewer'>
+                                    {this.state.posts.map(post=><Photo post={post} onRemovePhoto={this.removePhoto}/>)}
+                                </div>
                             </div>
-                        </div>
-                    
-                }
-                {
-                    this.state.screen === 'addPhoto' && 
-                        <div>
-                            <AddPhoto/>
-                        </div>
-                    
-                    
-                }
+                    }/>
+                    <Route path='/addPhoto' render={()=>
+                        <AddPhoto/>
+                    }/>
                 </div>
         )
         
